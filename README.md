@@ -6,9 +6,9 @@ It makes possible to implement webservices,web applications and batch applicatio
 
 ![enginediagrame](https://cloud.githubusercontent.com/assets/12789651/8512304/0791f4d2-2313-11e5-96c9-e937eed7fef8.jpg)
 
-In this repository you going to find a funcional application with two implementations of the AbstractActionProcessor. One SpringWEB and other Javabatch.
+In this repository you going to find a functional application with two implementations of the AbstractActionProcessor. One SpringWEB and other Javabatch.
 
-- In the web implementation you going to see a simple jquery implementation producing and consuming json data.
+- In the Web implementation you going to see a simple jquery exchanging json data with the server.
 local URL: http://localhost:8080/ActionProcessorEngine/index.html
 
 - The java batch implementation requests the same action-set of the Web, but producing and consuming java objects.
