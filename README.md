@@ -12,5 +12,6 @@ In this repository you going to find a functional application with two implement
 local URL: http://localhost:8080/ActionProcessorEngine/index.html
 
 - The java batch implementation requests the same action-set of the Web, but producing and consuming java objects.
+- To test run the Main.class
 
 - Run this applications will be easyer with you have eclipse, maven 3,java 7 and tomcat 8. Having this tools, just import ActionProcessorEngine project to your eclipse, run maven install and deploy it in tomcat.
