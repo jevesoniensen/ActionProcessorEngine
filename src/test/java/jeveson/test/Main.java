@@ -22,6 +22,9 @@ public class Main implements Constants{
 		
 		try {
 			
+			Map<String, String> requestParams = new HashMap<String, String>();
+			requestParams.put(KEY_CTX_ACTION_SET, "showServer");
+			
 			ApplicationContext ctx = new AnnotationConfigApplicationContext(Main.class);
 			BatActionProcessor bap = (BatActionProcessor)ctx.getBean(BatActionProcessor.class);
 			bap.setCtx(ctx);
@@ -29,6 +32,7 @@ public class Main implements Constants{
 			HashMap<String, Object> context = new HashMap<String, Object>();
 			context.put(KEY_CTX_BEAN_FACTORY, bap);
 			context.put(KEY_APP_CONTEXT, ctx);
+			context.put(KEY_CTX_REQUEST_PARAMS, requestParams);
 			
 			ArrayList<String> ioInInterfaces = new ArrayList<String>();
 			ioInInterfaces.add(KEY_BEAN_REQUEST_ATTRIBUTES_GETTER);
