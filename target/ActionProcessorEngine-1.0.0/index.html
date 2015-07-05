@@ -1,0 +1,133 @@
+<!DOCTYPE HTML>
+<intercept-url pattern="/favicon.ico" access="ROLE_ANONYMOUS" />
+<html>
+
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<title>Action Processor</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="bootstrap/bootstrap.css" media="screen">
+    <link rel="stylesheet" href="bootstrap/bootswatch.min.css">  
+	<script src="js/jquery-1.10.2.min.js"></script>
+    <script src="bootstrap/bootstrap.min.js"></script>
+    <script src="bootstrap/bootswatch.js"></script>
+</head>
+<body>
+    <div class="navbar navbar-default navbar-fixed-top">
+  		<div class="container">
+		    <div class="navbar-header">
+		      <a class="navbar-brand" href="#">Action Processor</a>
+		      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-navbar-collapse-1">
+		        <span class="sr-only">Toggle navigation</span>
+		        <span class="icon-bar"></span>
+		        <span class="icon-bar"></span>
+		        <span class="icon-bar"></span>
+		      </button>		     
+		    </div>
+
+		    <div id="divMenu" class="collapse navbar-collapse" >
+		      <ul class="nav navbar-nav">
+		      </ul>
+		    </div>
+	  	</div>
+	</div>
+
+    <div class="container">
+        <div class="row">
+          <div class="col-sm-10">
+            <div class="page-header">
+              <h1 id="dialogs">Action Executor Tester</h1>
+            </div>
+          </div>
+        </div>	    
+        <div class="row">
+          <div class="col-sm-10">
+            <div class="well bs-component">    
+				<form  id="formActionTest" class="form-horizontal">
+				  <fieldset>
+				    <legend>Servers</legend>
+				    <div class="form-group form-group-sm">
+				      <label for="actionSet" class="col-sm-2 control-label">Action Set</label>
+				      <div class="col-sm-4">
+				        <input type="text" class="form-control" id="actionSet" placeholder="..showServers,findServer,.." >
+				      </div>
+				      <label for="filter" class="col-sm-2 control-label">Filter</label>
+				      <div class="col-sm-2">
+				        <input type="text" class="form-control" id="filter" placeholder="server name">
+				      </div>
+				    </div>
+				    <!-- div class="form-group form-group-sm">
+				      <label for="amountSell" class="col-sm-2 control-label">Amount Sell</label>
+				      <div class="col-sm-2">
+				        <input type="text" class="form-control" id="amountSell" placeholder="Amount Sell" value="100"> 
+				      </div>
+				      <label for="amountBuy" class="col-sm-2 control-label">Amount Buy</label>
+				      <div class="col-sm-2">
+				        <input type="text" class="form-control" id="amountBuy" placeholder="Amount Buy" value="20">
+				      </div>
+				      <label for="rate" class="col-sm-2 control-label">Rate</label>
+				      <div class="col-sm-2">
+				        <input type="text" class="form-control" id="rate" placeholder="Rate" value="3">
+				      </div>
+				    </div>
+				    <div class="form-group form-group-sm">
+				      <label for="timePlaced" class="col-sm-2 control-label">Time Placed</label>
+				      <div class="col-sm-2">
+				        <input type="text" class="form-control" id="timePlaced" placeholder="Time Placed" value="15/10/14">
+				      </div>
+				      <label for="originatingCountry" class="col-sm-2 control-label">Originating<br/>Country</label>
+				      <div class="col-sm-2">
+				        <input type="text" class="form-control" id="originatingCountry" placeholder="Originating Country" value="Brazil">
+				      </div>
+				    </div -->		
+				    <div class="form-group">
+				      <div class="col-lg-10 col-lg-offset-5">
+				        <button type="reset" class="btn btn-default">Cancel</button>
+				        <button type="button" id="btnSend" class="btn btn-primary">Submit</button>
+				      </div>
+				    </div>					        
+				  </fieldset>
+				</form>
+		      </div>
+		    </div>		
+		</div>		    
+	</div>
+	
+	<script type="text/javascript">
+	
+	$( "#btnSend" ).click(function(){
+
+	    var $inputs = $('#formActionTest :input');
+
+	    // not sure if you wanted this, but I thought I'd add it.
+	    // get an associative array of just the values.
+	    var values = "{";
+	    $inputs.each(function() {
+	    	if(this.id.trim()!=""){
+	        	values = values + " \""+this.id +"\": \"" +$(this).val() + "\",";
+	    	}
+	    });
+
+		values = values + "\"doSendMsg\":\"1\"}"
+	 	//alert(values);
+		
+		$.ajax({
+			  type: "POST",
+			  url: "/ActionProcessorEngine/app/json.json",
+			  dataType: "json",
+			  data: values,
+	          success: function (msg) {
+	               alert (msg) ;
+	          }
+			}); 
+			
+	 	return false;
+	});
+	
+	</script>
+	<footer>
+		<p>Copyright 2009 Jeveson F Iensen</p>
+	</footer>
+</body>
+
+</html>  
