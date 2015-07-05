@@ -1,4 +1,4 @@
-package jeveson.test;
+package jeveson.actionprocessor.engine.batch;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -12,7 +12,8 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.context.annotation.ComponentScan;
 
-@ComponentScan("jeveson.test,jeveson.actionprocessor.engine.logger,"
+@ComponentScan("jeveson.actionprocessor.engine.batch,"
+		     + "jeveson.actionprocessor.engine.logger,"
 		     + "jeveson.actionprocessor.engine.core,"
 		     + "jeveson.actionprocessor.engine.action.impl,"
 		     + "jeveson.actionprocessor.engine.io.impl")
