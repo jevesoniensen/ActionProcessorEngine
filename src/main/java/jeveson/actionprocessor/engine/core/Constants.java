@@ -34,46 +34,4 @@ public interface Constants {
 
 	
 	
-	
-
-    /*
-    
-    
-    //beans constants
-	String KEY_BEAN_CUSTOMER = "Customer";
-	
-	String KEY_BEAN_APPLICATION_ACRONYM = "ApplicationAcronym";
-	String KEY_BEAN_SESSION_HANDLER_SERVICE = "SessionHandlerService";
-	String KEY_BEAN_AUDIT_LOG_SERVICE = "AuditLogService";
-
-
-
-
-	String KEY_BEAN_ACTIONLIST_DIRECTORY = "ActionList-Directory";
-	String KEY_BEAN_ACTIONLIST_DEFAULT_FILE = "ActionList-Default-File";
-	String KEY_BEAN_ACTION_RELOADABLE_PROPERTIES = "ActionReloadableProperties";
-	String KEY_BEAN_LOAD_ACTIONS_SERVICE = "LoadActionsService";
-	String KEY_BEAN_PARSE_OBJECT_TO_XML = "ParseObjectToXml";
-	String KEY_BEAN_LOGIN_VALIDATION_SERVICE = "LoginValidationService";
-	String KEY_BEAN_CONFIGURATIONS = "Configurations";
-	String KEY_BEAN_MESSAGES = "Messages";
-	
-
-    String KEY_CTX_PARSE_TYPE = "parse_type";
-    String KEY_CTX_CONTENT_TYPE = "content-type";
-    String KEY_CTX_CANAL = "canal";
-    String KEY_CTX_REMOTE_ADDRESS = "remote_address";
-    String KEY_CTX_RESPONSE = "response";
-    String KEY_CTX_REQUEST = "request";
-    String KEY_CTX_ACTION_LIST = "request_action_list";
-    String KEY_CTX_JQUERY_CALLBACK = "callback";
-    String KEY_CTX_ACTION = "action";
-    String KEY_CTX_ACTION_INFO = "ActionInfo";
-    String KEY_CTX_STEP_ATUAL = "STEP_ATUAL";
-	String KEY_CTX_CHAR_SET = "char-set";    
-	String KEY_CTX_PARSED_XML = "parsed_xml";
-	
-	static final boolean FLOW_STOP = Boolean.FALSE.booleanValue();
-	static final boolean FLOW_CONTINUE = Boolean.TRUE.booleanValue(); */
-	
 }
