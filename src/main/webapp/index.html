@@ -8,7 +8,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="bootstrap/bootstrap.css" media="screen">
 <link rel="stylesheet" href="bootstrap/bootswatch.min.css">
-<script src="js/jquery-1.10.2.min.js"></script>
+<script src="js/jquery-2.1.4.min.js"></script>
 <script src="bootstrap/bootstrap.min.js"></script>
 <script src="bootstrap/bootswatch.js"></script>
 </head>
@@ -44,13 +44,13 @@
 			<div class="col-lg-6">
 				<div class="well bs-component">
 					<form id="formActionTest" class="form-horizontal">
+					<input type="hidden" id="actionSet" name="actionSet" value="showServer">
 						<fieldset>
 							<legend>Server Filter</legend>					
 							<div class="form-group">
 								<label for="filter" class="col-lg-4 control-label">Filter</label>
 								<div class="col-lg-6">
-									<input type="text" class="form-control" id="filter"
-										placeholder="Server1,...">
+									<input type="text" class="form-control" id="filter" name="filter" placeholder="Server1,...">
 								</div>
 							</div>
 							<div class="form-group">
@@ -99,7 +99,7 @@
 	<script type="text/javascript">
 	
 		$(document).ready(function(){
-			
+			var postData = {"actionSet":"showServices"};
 			$.ajax({
 				headers: { 
 			        'Accept': 'application/json',
@@ -108,18 +108,18 @@
 				type : "POST",
 				url : "/ActionProcessorEngine/app/json.json",
 				dataType : "json",
-				data : "{\"actionSet\":\"showServices\"}",
+				data : JSON.stringify(postData),
 				success : function(jsonObject) {	
 					$("#servicesTable tr:gt(0)").remove();
 					console.log( jsonObject.resultData);
 					if(jsonObject.resultData != null &&
 					   jsonObject.resultData.servicesList != null){
 						console.log( jsonObject.resultData.servicesList);
-						
-				  	 	$.each( jsonObject.resultData.servicesList, function( key, val ) {
-						    var newRow = $(getTableRow(key,val));
-		   					$("#servicesTable").append(newRow);
+						var rows = "";
+				  	 	$.each( jsonObject.resultData.servicesList, function( key, val ) {						    
+						    rows = rows + getTableRow(key,val);
 						});
+				  	 	$("#servicesTable").append($(rows));
 					}					  	 	
 				}
 			});
@@ -129,22 +129,7 @@
 	
 		$("#btnSend").click(
 				function() {
-
-					var $inputs = $('#formActionTest :input');
-
-					// not sure if you wanted this, but I thought I'd add it.
-					// get an associative array of just the values.
-					var values = "{";
-					$inputs.each(function() {
-						if (this.id.trim() != "") {
-							values = values + " \"" + this.id + "\": \""
-									+ $(this).val() + "\",";
-						}
-					});
-
-					values = values + "\"actionSet\":\"showServer\"}"
-					//alert(values);
-
+					
 					$.ajax({
 						headers: { 
 					        'Accept': 'application/json',
@@ -153,16 +138,16 @@
 						type : "POST",
 						url : "/ActionProcessorEngine/app/json.json",
 						dataType : "json",
-						data : values,
+						data : parseForm($("#formActionTest")),
 						success : function(jsonObject) {
 							$("#serversTable tr:gt(0)").remove();
 							if(jsonObject.resultData != null &&
 							   jsonObject.resultData.servers != null){
+								var rows = "";
 						  	 	$.each( jsonObject.resultData.servers, function( key, val ) {
-	
-								    var newRow = $(getTableRow(key,val));
-				   					$("#serversTable").append(newRow);
+						  	 		rows = rows + getTableRow(key,val);				   					
 								});
+						  	 	$("#serversTable").append($(rows));
 							}					  	 	
 						}
 					});
@@ -177,6 +162,16 @@
 						      
 					return row;
 				}
+				
+				function parseForm($form){
+			        var serialized = $form.serializeArray();
+			        var s = '';
+			        var data = {};
+			        for(s in serialized){
+			            data[serialized[s]['name']] = serialized[s]['value']
+			        }
+			        return JSON.stringify(data);
+			    }
 
 	</script>
 	<footer>
