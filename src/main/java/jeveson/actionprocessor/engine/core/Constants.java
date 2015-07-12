@@ -30,8 +30,5 @@ public interface Constants {
 	
 	int ERROR_DEFAULT = 99;
 	int NO_ERROR = 0;
-
-
-	
 	
 }

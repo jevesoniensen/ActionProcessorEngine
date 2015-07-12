@@ -28,6 +28,7 @@ public class ActionLoader {
 			list.add(new ActionInfo("serverListAction"));
 		} else if(actionSetName.equals("showServices")){
 			list.add(new ActionInfo("servicesListAction"));
+			list.add(new ActionInfo("pieAction"));			
 		}
 		
 		
